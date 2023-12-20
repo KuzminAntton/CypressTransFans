@@ -1,0 +1,36 @@
+{
+  "user_default" : {
+    "first_name" : "name",
+    "last_name" : "lastName",
+    "username" : "someUsername",
+    "email" : "someUsername@gmail.com",
+    "password" : "somePassword123@#$"
+  },
+  "user_api" : {
+    "userType": "1",
+    "firstName": "jonads",
+    "username": "johdnbbbb",
+    "lastName": "Fodrdbbbb",
+    "email": "jodfsbbb@gmail.com",
+    "profilePic": "string",
+    "countryCode": "string",
+    "verificationId": "656878973414ae0029d579ce",
+    "dateOfBirth": "string",
+    "password": "S@msung2019",
+    "gender": "Male",
+    "locationId": "",
+    "referralSource": "string",
+    "socialMediaLink": "string",
+    "deviceId": "cb31df240b528c563f59d7d8cf86548b",
+    "deviceMake": "string",
+    "deviceModel": "string",
+    "deviceTypeCode": 1,
+    "deviceOs": "string",
+    "isNSFWAllow": false,
+    "browserVersion": "string",
+    "groupIds": [
+      "stringstringstringstring"
+    ],
+    "timezone": "string"
+  }
+ }

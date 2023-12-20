@@ -1,0 +1,15 @@
+{
+  "name": "TransFansCypress",
+  "version": "1.0.0",
+  "devDependencies": {
+    "cypress": "^13.3.2",
+    "cypress-xpath": "^2.0.1",
+    "mocha": "^10.2.0"
+  },
+  "scripts": {
+    "cy:open": "cypress open"
+  },
+  "dependencies": {
+    "fakerator": "^0.3.6"
+  }
+}
