@@ -10,13 +10,13 @@ class LoginPage {
 
 
     elements = {
-        IDOfThePage: () => cy.get('#login_cont').should('be.visible'),
-        loginField: () => cy.get('#dv_email_usr').should('be.visible'),
-        passwordField: () => cy.xpath('//input[@type="password"]').should('be.visible'),
-        submitButton: () => cy.get('#logIn1').should('be.visible'),
-        signUpButton: () => cy.xpath('.//a[contains(text(), "Sign Up Now")]').should('be.visible'),
-        emailError: () => cy.get('#dv_email_usr-helper-text'),
-        wrongEmailOrPassword: () => cy.xpath('.//p[@id="pwd_usr1 forgotPassDiv-helper-text"]')
+        IDOfThePage: () => cy.get('#__next').should('be.visible'),
+        loginField: () => cy.get('#input-field-email').should('be.visible'),
+        passwordField: () => cy.get('#input-field-password').should('be.visible'),
+        submitButton: () => cy.get('[type="submit"]').should('be.visible'),
+        signUpButton: () => cy.get('[href="/registration"]').should('be.visible'),
+        emailError: () =>  cy.xpath('p//class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-zfjn7v"').should('be.visible'),
+        wrongEmailOrPassword: () => cy.get('[class="MuiAlert-message css-q3hi8p"]')
     };
 
     logIn(loginName, password) {
