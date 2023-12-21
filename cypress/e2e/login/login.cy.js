@@ -37,8 +37,7 @@ describe('Tests for login', () => {
   it('login with invalid email', () => {
     cy.visit(baseTest.baseURL + "/login")
     cy.url().should('eq', baseTest.baseURL + '/login')
-
-    loginPage.logIn("blablaincorrectUserName", baseTest.userPassword)
+    loginPage.logInButNotClickSubmitButton("blablaincorrectUserName", baseTest.userPassword)
     loginPage.verifyEmailErrorMessageIsVisible()
   });
 
@@ -46,15 +45,14 @@ describe('Tests for login', () => {
     cy.visit(baseTest.baseURL + "/login")
     cy.url().should('eq', baseTest.baseURL + '/login')
 
-    loginPage.logIn(baseTest.userName, "bla")
+    loginPage.logIn(baseTest.userName, "blalaa")
     loginPage.verifyWrongEmailOrPasswordErrorMessageIsVisible()
   });
 
   it('login as not registrated user', () => {
     cy.visit(baseTest.baseURL + "/login")
     cy.url().should('eq', baseTest.baseURL + '/login')
-
-    loginPage.logIn("someCorrectEmailButNotRegistrated@gmail.com", "bla123123123")
+    loginPage.logIn("someCorrectEmailButNotRegistrated@gmail.com", "S@msung2019")
     loginPage.verifyNotRegistratedUserErrorMessageIsVisible()
   });
 
