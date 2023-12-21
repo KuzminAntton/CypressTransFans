@@ -35,6 +35,15 @@ Cypress.Commands.add('generateRandomGmail', () => {
     return email + '@gmail.com';
 });
 
+Cypress.Commands.add('generateRandomUSAPhoneNumber', () => {
+    const areaCode = Math.floor(Math.random() * 900) + 100;
+    const prefix = Math.floor(Math.random() * 900) + 100;
+    const lineNumber = Math.floor(Math.random() * 9000) + 1000;
+
+    const phoneNumber = `+1 (${areaCode}) ${prefix}-${lineNumber}`;
+    return phoneNumber;
+});
+
 Cypress.Commands.add('generateRandomString', () => {
     const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
     let randomString = '';
