@@ -16,7 +16,7 @@ class LoginPage {
         submitButton: () => cy.get('[type="submit"]').should('be.visible'),
         signUpButton: () => cy.get('[href="/registration"]').should('be.visible'),
         emailError: () =>  cy.xpath('p//class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-filled css-zfjn7v"').should('be.visible'),
-        wrongEmailOrPassword: () => cy.get('[class="MuiAlert-message css-q3hi8p"]')
+        wrongEmailOrPassword: () => cy.get('[class="MuiAlert-message css-q3hi8p"]').should('be.visible')
     };
 
     logIn(loginName, password) {
