@@ -32,6 +32,7 @@ describe('Tests for not logged user and verify Social, Explore and Chat tabs', (
 
     it('Verify categories : Models', () => {
         mainPage.verifyThatIsMainPage();
+        mainPage.clickOnViewAllCategories()
         mainPage.clickOnModelsTitle();  // Corrected the title click based on category
         modelsPage.isModelsTitleVisible();
     });

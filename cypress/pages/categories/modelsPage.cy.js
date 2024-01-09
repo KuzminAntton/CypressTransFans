@@ -2,7 +2,7 @@
 class ModelsPage {
 
     elements = {
-        modelsTitle: () => cy.get('h3.jsx-3286866772:contains("Models")').should('be.visible')
+        modelsTitle: () => cy.xpath('.//div[contains(text(),"Models")]').should('be.visible')
     };
 
     isModelsTitleVisible() {

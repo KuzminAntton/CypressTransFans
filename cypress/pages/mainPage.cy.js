@@ -10,6 +10,8 @@ class MainPage {
         profileButton: () => cy.get('span:contains("Profile")'),
         searchInput: () => cy.get('input[name="search"][type="text"].myInput'),
         noRecentSearchesText: () => cy.get('p.bold:contains("No Recent Searches Found")'),
+        rightArrowButton: () => cy.get('[alt="rightArrow"]'),
+        viewAllCategories: () => cy.get('[class="jsx-878561631 mb-3 mt-3 position-absolute fntSz18 font-weight-700 primaryTextColor cursorPtr"]'),
         notLoggedProfileButton: () => cy.xpath("//*[local-name()='use' and @*[local-name()='href']='/TransFans/images/desktop/icons/profile-white.svg#profile_icon']"),
 
 
@@ -18,7 +20,7 @@ class MainPage {
         fitnessTitle: () => cy.get('span.title:contains("Fitness")'),
         realityTVTitle: () => cy.get('span.title:contains("Reality TV ")'),
         publicFiguresTitle: () => cy.get('span.title:contains("Public Figures ")'),
-        modelsTitle: () => cy.get('span.title:contains("Models")'),
+        modelsTitle: () => cy.xpath('.//div[contains(text(),"Models")]'),
 
         // Footer links
         faceBookFooterLink: () => cy.get('img[src="/TransFans/images/icons/social-facebook.svg"]'),
@@ -49,6 +51,11 @@ class MainPage {
 
     clickOnModelsTitle() {
         this.elements.modelsTitle().click();
+    }
+
+    clickOnViewAllCategories() {
+        this.elements.viewAllCategories().click()
+        this.elements.modelsTitle().should('be.visible');
     }
 
     verifyThatSerachHistoryIsEmpty() {
@@ -106,7 +113,7 @@ class MainPage {
     }
 
     verifyThatIsMainPage() {
-        this.elements.homePageID().should('be.visible');
+        this.elements.homePageID().should('be.visible') ;
     }
 
     verifyThatSearchHistoryIsEmpty() {

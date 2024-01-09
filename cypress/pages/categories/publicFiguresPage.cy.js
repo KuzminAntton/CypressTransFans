@@ -2,7 +2,7 @@
 class PublicFiguresPage {
 
     elements = {
-        publicFiguresTitle: () => cy.get('h3.jsx-3286866772:contains("Public Figures ")').should('be.visible')
+        publicFiguresTitle: () => cy.get('h3.jsx-1291067284:contains("Public Figures")').should('be.visible')
     };
 
     isPublicFiguresTitleVisible() {
