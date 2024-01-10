@@ -2,7 +2,7 @@
 class RelativeTVShowsPage {
 
     elements = {
-        realityTVTitle: () => cy.get('h3.jsx-3286866772:contains("Reality TV ")').should('be.visible')
+        realityTVTitle: () => cy.get('h3.jsx-1291067284:contains("Reality TV")').should('be.visible')
     };
 
     isRealityTVTitleVisible() {
