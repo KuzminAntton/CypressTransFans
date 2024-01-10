@@ -1,9 +1,9 @@
-import loginPage from "../../pages/login/loginPage.cy";
-import mainPage from "../../pages/mainPage.cy";
-import baseTest from "../baseTest.cy";
-import signUpPage from "../../pages/signUpPage/signUpPage.cy";
-import myProfilePage from "../../pages/profile/myProfilePage.cy";
-import editProfilePage from "../../pages/profile/editProfilePage.cy";
+import loginPage from "../../../pages/login/loginPage.cy";
+import mainPage from "../../../pages/mainPage.cy";
+import baseTest from "../../baseTest.cy";
+import signUpPage from "../../../pages/signUpPage/signUpPage.cy";
+import myProfilePage from "../../../pages/profile/myProfilePage.cy";
+import editProfilePage from "../../../pages/profile/editProfilePage.cy";
 
 describe('Tests for registration', () => {
 

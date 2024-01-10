@@ -1,8 +1,8 @@
-import baseTest from "../baseTest.cy"
-import loginPage from "../../pages/login/loginPage.cy"
-import mainPage from "../../pages/mainPage.cy"
-import adminLoginPage from "../../pages/admin/login/adminLoginPage.cy"
-import mainAdminPage from "../../pages/admin/mainAdminPage.cy"
+import baseTest from "../../baseTest.cy"
+import loginPage from "../../../pages/login/loginPage.cy"
+import mainPage from "../../../pages/mainPage.cy"
+import adminLoginPage from "../../../pages/admin/login/adminLoginPage.cy"
+import mainAdminPage from "../../../pages/admin/mainAdminPage.cy"
 
 
 

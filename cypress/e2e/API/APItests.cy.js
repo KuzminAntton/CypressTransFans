@@ -55,12 +55,12 @@ describe('Tests for registration', () => {
         // Other tests can go here
 
         afterEach(() => {
-        //     if (userID) {
-        //         helperAPI.deleteUserAdminByID(userID, adminToken).then((delete_response) => {
-        //             cy.log("User deleted: " + userID);
-        //             userID = null; // Reset userID after deletion
-        //         });
-        //     }
+            if (userID) {
+                helperAPI.deleteUserAdminByID(userID, adminToken).then((delete_response) => {
+                    cy.log("User deleted: " + userID);
+                    userID = null; // Reset userID after deletion
+                });
+            }
         });
     });
 
