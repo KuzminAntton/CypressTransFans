@@ -1,5 +1,4 @@
 const APITransUrl = "https://api.dev.transfans.com";
-const adminToken = "Bearer eyJhbGciOiJSU0EtT0FFUCIsImN0eSI6IkpXVCIsImVuYyI6IkExMjhHQ00iLCJ0eXAiOiJKV1QifQ.KMBZ9Anzt1LTfO0KkWZd_pxIDhr88xsUtWm72IWhyPnhXOyWHPt2jL6tn1CfRA45iRJ0_Xum8W2nwkuxfaW6zm_frglo9z4iAIY_SwIa47ZJAnHK9GlJEPjlekLlOsm9QvBKkF2R9zHsp6l-RPVvxaKS7YqcDS2fDsK4ozA8hOE.IgBxPTDK8F60rwyy.BPFDq3TcvWGNysx05AkPY9Ornjr7oY1AZ7yxYnRKr1ohaRJtzKFsl8L2E-ucdaU7eX-lisIk0ico5JgGiNMHE93IViFFHYbEU1Dm40S7jwc1KG_T2Pg3UORtm2QfAap5e8mAeIo8BPtAEmS2TLO29t9_PMPaaCJNRmT2cOzVLLPuSvXp5IA0JQvaTJkwtoSscvL_6K2GSeHTbjQLe6PjhCP2KDpCyl4dSXrQZsFpcAxdZPWxhcTdmDVdCTYe5gRzeRVwEFmFPQ2szL6lEXPx1ph8zLQEgPeUf_CveqmUjkU3VdPLxgSh3oQnv3DHXu_gF_fQY1oIfhoaO5HcZapPpB2mK5M57HN919eduS75wLL3KOqsn1mcE1deNfTlFgKAe8hFZ3CX-Icv6XPYfOkJy2ZbNWT48-B7Tfs2cvHMGZUzpTSzdiOajJCHIgwSbYuYrii2TZKfaIEKy8YEYvtvuwU704_R7dYchQd0CzyoZv3a_kC7GhG24RpDC_Vc3j5VfSmwytnhSr-W1RPXA87amLW7F-B885bXfGidMXbU4WOE686VdSNgjivyFSfOXzegkb1bCY4W6MTiUEcdYjdIXmAe73y6OnQFkFupnDJzU8w1e60jKMJdVw6oL0Y0cOCa89OnKSFaR6d3d6xVi3FbsivQvHDR9pPFbq38t6wp-5XwFgYS2XEXjK-DbK_HQwmfJLH3haxURy8kNyw4_q4vpl475ERmJfmOeiRSigIxmkeREXe_8AYzg07MVvlKToLxNRIE2YR3P7hN5xFCpeXHfIRwFzLuFPDsfnzBAuUvog.zXm0RlLX8eNE4GeDSeyYaQ"
 const succsessVerifiedMessage = "successfully verified."
 const succsessBecameCreator = "Success"
 class LoginAPI {
@@ -9,21 +8,19 @@ class LoginAPI {
     }
 
     makeUserApprovable(token, phoneNumber, userID, username) {
-        return this.sendVerificationCode(token, phoneNumber, userID).then((verification_response) => {
-            let verificationId = verification_response.body.data.verificationId
-            this.validateVerificationCode(token, phoneNumber, verificationId).then((validation_response) => {
-                expect(validation_response.body.message).equal(succsessVerifiedMessage)
-                this.becomeCreator(token, phoneNumber, verificationId, username).then((become_creator_response) => {
+        // return this.sendVerificationCode(token, phoneNumber, userID).then((verification_response) => {
+        //     let verificationId = verification_response.body.data.verificationId
+        //     this.validateVerificationCode(token, phoneNumber, verificationId).then((validation_response) => {
+        //         expect(validation_response.body.message).equal(succsessVerifiedMessage)
+                return this.becomeCreator(token, phoneNumber).then((become_creator_response) => {
                     expect(become_creator_response.body.message).equal(succsessBecameCreator)
                 })
-            })
-        })
+        //     })
+        // })
     }
 
-    approveDocsAndUser(userId) {
-        return this.loginToAdmin().then((admin_login_response) => {
-            let adminToken = admin_login_response.body.result[0].token
-            this.approveUser(adminToken, userId).then((approve_user_response) => {
+    approveDocsAndUser(userId, adminToken) {
+            return this.approveUser(adminToken, userId).then((approve_user_response) => {
                 this.approveDocs(adminToken, userId).then((approve_docs_response) => {
                     return {
                         userApprovalResponse: approve_user_response,
@@ -31,7 +28,6 @@ class LoginAPI {
                     };
                 })
             })
-        })
     }
 
     approveDocs(token, userId) {
@@ -128,34 +124,35 @@ class LoginAPI {
             body:
                 {
                     profilePic:"6541211da87650b0774012c8/profile__1698767133097.jpg",
-                    username: username,
-                    dateOfBirth:"0994-11-10T22:36:00.000Z",
+                    // username: username,
+                    dateOfBirth:"1994-11-10T22:36:00.000Z",
+                    locationId: "651a70f2e86df10007ee1044",
                     groupIds:["638f0ed659965b00170b4e50"],
                     phoneNumber: phoneNumber,
                     countryCode: "1",
-                    verificationId: verificationID,
+                    //TODO return back verification ID when it will work
+                    verificationId: "",
                 },
             failOnStatusCode: false
         })
     }
 
-    loginToAdmin() {
-        return cy.request({
-            url: `${APITransUrl}/v1/python/login/`,
-            method: "POST",
-            headers: {
-                'lan': "en",
-                'platform': 3
-            },
-            body: {
-                data:[{
-                        email:"admin2@gmail.com",
-                        password:"M0VtYmVk",
-                        appName:"fanzly"}
-                ]},
-            failOnStatusCode: false
-        })
-    }
+    // loginToAdmin() {
+    //     return cy.request({
+    //         url: `${APITransUrl}/v1/python/login/`,
+    //         method: "POST",
+    //         headers: {
+    //             'lan': "en",
+    //             'platform': 3
+    //         },
+    //         body: {
+    //             data:[{
+    //
+    //                     appName:"fanzly"}
+    //             ]},
+    //         failOnStatusCode: false
+    //     })
+    // }
 
 
     signUp(user, token) {
@@ -172,7 +169,7 @@ class LoginAPI {
     })
     }
 
-    deleteUserAdminByID(userID) {
+    deleteUserAdminByID(userID, adminToken) {
         return cy.request({
             url: `${APITransUrl}/v1/user/account`,
             method: "PUT",
@@ -184,6 +181,25 @@ class LoginAPI {
                 status:"4",
                 userIds:[userID],
                 reason:"some_reason"
+            },
+            failOnStatusCode: false
+        })
+    }
+
+    getAdminToken() {
+        return cy.request({
+            url: `${APITransUrl}/v1/python/login/`,
+            method: "POST",
+            headers: {
+                'lan': "en",
+                'platform': 3
+            },
+            body: {
+                data:[{
+                    email: Cypress.env("ADMIN_API_EMAIL"),
+                    password:Cypress.env("ADMIN_API_PASS"),
+                    appName:"fanzly"
+                }]
             },
             failOnStatusCode: false
         })

@@ -9,11 +9,12 @@ describe('Tests for registration', () => {
 
     before(() => {
         helperAPI.getGuestToken().then(response => {
+            // guestToken = response.body.data.accessToken
             guestToken = response.body.data.accessToken
         });
 
-        helperAPI.loginToAdmin().then(response => {
-            adminToken = response.body.result.token
+        helperAPI.getAdminToken().then(response => {
+            adminToken = response.body.result[0].token
         });
 
     })
@@ -23,7 +24,7 @@ describe('Tests for registration', () => {
     });
 
     describe('API tests', () => {
-        xit('User registration and retrieval of userID', () => {
+        it('User registration and retrieval of userID', () => {
                 user.user_api.email = fake().internet.email();
                 user.user_api.username = fake().names.firstName();
 
@@ -40,8 +41,9 @@ describe('Tests for registration', () => {
                 helperAPI.signUp(user.user_api, guestToken).then((response) => {
                     userID = response.body.data.user._id; // Assign the userID
                     let userToken = response.body.data.token.accessToken
+                    cy.log("user token : " + userToken)
                     helperAPI.makeUserApprovable(userToken, usaPhoneNumber, userID, user.user_api.username).then((response) => {
-                        helperAPI.approveDocsAndUser(userID).then((response) => {
+                        helperAPI.approveDocsAndUser(userID, adminToken).then((response) => {
                             cy.log(response.userApprovalResponse.body)
                         })
                     })
@@ -53,12 +55,12 @@ describe('Tests for registration', () => {
         // Other tests can go here
 
         afterEach(() => {
-            if (userID) {
-                helperAPI.deleteUserAdminByID(userID).then((delete_response) => {
-                    cy.log("User deleted: " + userID);
-                    userID = null; // Reset userID after deletion
-                });
-            }
+        //     if (userID) {
+        //         helperAPI.deleteUserAdminByID(userID, adminToken).then((delete_response) => {
+        //             cy.log("User deleted: " + userID);
+        //             userID = null; // Reset userID after deletion
+        //         });
+        //     }
         });
     });
 
