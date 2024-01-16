@@ -39,13 +39,11 @@ class LoginPage {
     }
 
     verifyEmailErrorMessageIsVisible() {
-        setTimeout(this.elements.signUpButton,500)
         this.elements.emailError().should('be.visible')
         this.elements.emailError().should('contain', this.ERROR_EMAIL_MESSAGE)
     }
 
     verifyWrongEmailOrPasswordErrorMessageIsVisible() {
-        setTimeout(this.elements.signUpButton,500)
         this.elements.wrongEmailOrPassword().should('be.visible')
         this.elements.wrongEmailOrPassword().should('contain', this.WRONG_EMAIL_OR_PASSWORD_MESSAGE)
     }
